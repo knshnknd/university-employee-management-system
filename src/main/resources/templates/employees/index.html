@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Сотрудники</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h3>Сотрудники университета</h3>
+
+    <div th:each="employee : ${employees}">
+        <a th:href="@{/employees/{id}(id=${employee.getId()})}"
+           th:text="${employee.getFullName() + ', ' + employee.getDepartment().getName()}"></a>
+    </div>
+
+    <br/>
+
+    <hr/>
+    <form action="/employees/new">
+        <input type="submit" value="Добавить сотрудника">
+    </form>
+
+</body>
+</html>

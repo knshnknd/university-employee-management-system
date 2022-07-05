@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Подразделение</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h3 th:text="${department.getName()}"></h3>
+    <h4>Подразделение университета</h4>
+
+    <hr/>
+
+    <div th:if="${!employees.isEmpty()}">
+        <b>Сотрудники:</b>
+        <br/>
+        <table th:each="employee : ${employees}">
+            <tr> <a class="list" th:href="@{/employees/{id}(id=${employee.getId()})}"
+                    th:text="' · ' + ${employee.getFullName() + ', ' + employee.getRank()}"/>
+            </tr>
+        </table>
+    </div>
+
+    <p th:text="${'Количество сотрудников: ' + department.getEmployeesNumber()}"></p>
+    <p th:text="${'Всего часов на подразделение: ' + department.getAllHoursOfAllEmployees()}"></p>
+
+    <form action="/employees/new">
+        <input type="submit" value="Добавить сотрудника">
+    </form>
+
+    <hr/>
+
+    <p th:text="${'Всего повышений квалификации на подразделение: ' + department.getNumberOfTrainingsOfAllEmployees()}"></p>
+
+    <hr/>
+
+    <table>
+        <tr>
+            <th>
+                <form th:method="GET" th:action="@{/departments/{id}/edit(id=${department.getId()})}">
+                    <input type="submit" value="Редактировать подразделение">
+                </form>
+            </th>
+            <th>
+                <form th:method="DELETE" th:action="@{/departments/{id}(id=${department.getId()})}">
+                    <input type="submit" value="Удалить подразделение">
+                </form>
+            </th>
+        </tr>
+    </table>
+
+</body>
+</html>

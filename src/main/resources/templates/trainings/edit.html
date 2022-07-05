@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Редактировать повышение квалификации</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+<form th:method="PATCH" th:action="@{/trainings/{id}(id=${training.getId()})}" th:object="${training}">
+    <label>Сотрудник:</label>
+    <select th:field="*{owner}">
+        <option th:each="employee : ${employees}" th:value="${employee.getId()}" th:name="employee"
+                th:text="${employee.getFullName()}"></option>
+    </select>
+    <br/>
+    <label for="title">Введите наименование ПК:</label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+
+    <br/>
+    <label for="certificateNumber">Введите номер удостоверения ПК:</label>
+    <input type="text" th:field="*{certificateNumber}" id="certificateNumber"/>
+    <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('certificateNumber')}" th:errors="*{certificateNumber}"></div>
+
+    <br/>
+    <label for="placeOfStudy">Введите место обучения:</label>
+    <input type="text" th:field="*{placeOfStudy}" id="placeOfStudy"/>
+    <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('placeOfStudy')}" th:errors="*{placeOfStudy}"></div>
+
+    <br/>
+    <label for="hours">Введите количество часов:</label>
+    <input type="text" th:field="*{hours}" id="hours"/>
+    <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('hours')}" th:errors="*{hours}"></div>
+    <br/>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

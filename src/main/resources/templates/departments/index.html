@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Все подразделения</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h3>Подразделения университета</h3>
+
+    <div th:each="department : ${departments}">
+        <a th:href="@{/departments/{id}(id=${department.getId()})}"
+           th:text="${department.getName()}"></a>
+    </div>
+
+    <hr/>
+    <form action="/departments/new">
+        <input type="submit" value="Добавить подразделение">
+    </form>
+
+</body>
+</html>

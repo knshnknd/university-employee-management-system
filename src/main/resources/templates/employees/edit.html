@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Редактировать сотрудника</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h4>Редактирование сотрудника</h4>
+
+    <form th:method="PATCH" th:action="@{/employees/{id}(id=${employee.getId()})}" th:object="${employee}">
+        <label for="fullName">ФИО:</label>
+        <input type="text" th:field="*{fullName}" id="fullName"/>
+        <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+        <br/>
+
+        <label>Подразделение:</label>
+        <select th:field="*{department}">
+            <option th:each="department : ${departments}" th:value="${department.getId()}" th:name="department"
+                    th:text="${department.getName()}"></option>
+        </select>
+        <br/>
+
+        <label for="rank">Должность:</label>
+        <input type="text" th:field="*{rank}" id="rank"/>
+        <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}"></div>
+        <br/>
+
+        <label for="hours">Количество часов на должность:</label>
+        <input type="text" th:field="*{hours}" id="hours"/>
+        <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('hours')}" th:errors="*{hours}"></div>
+        <br/>
+
+        <label for="email">Адрес электронной почты:</label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <br/>
+
+        <input type="submit" value="Добавить">
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Повышение квалификации</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+    <h3 th:text="${training.getTitle()}">training</h3>
+    <h4>Повышение квалификации/h4>
+
+    <p th:text="${'Сотрудник, прошедший повышение квалификации: ' + training.getOwner().getFullName()}"/>
+    <p th:text="${'Номер удостоверения: ' + training.getCertificateNumber()}"/>
+    <p th:text="${'Место обучения: ' + training.getPlaceOfStudy()}"/>
+    <p th:text="${'Количество часов: ' + training.getHours()}"/>
+
+    <table>
+        <tr>
+            <th>
+                <form th:method="GET" th:action="@{/trainings/{id}/edit(id=${training.getId()})}">
+                    <input type="submit" value="Редактировать ПК">
+                </form>
+            </th>
+            <th>
+                <form th:method="DELETE" th:action="@{/trainings/{id}(id=${training.getId()})}">
+                    <input type="submit" value="Удалить ПК">
+                </form>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

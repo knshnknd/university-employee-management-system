@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Добавить новое подразделение</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h4>Добавление нового подразделения</h4>
+
+    <form th:method="POST" th:action="@{/departments}" th:object="${department}">
+        <label for="name">Название подразделения:</label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red; font-size: 8px" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <br/>
+        <input type="submit" value="Добавить">
+    </form>
+
+</body>
+</html>

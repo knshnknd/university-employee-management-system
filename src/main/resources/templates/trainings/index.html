@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Все повышения квалификации</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h3>Повышение квалификации</h3>
+
+    <div th:each="training : ${trainings}">
+        <a th:href="@{/trainings/{id}(id=${training.getId()})}"
+           th:text="${training.getTitle() + ', ' + training.getOwner().getFullName()}">employees</a>
+    </div>
+    <br/>
+    <hr/>
+    <a href="/trainings/new">Добавить ПК</a>
+</html>

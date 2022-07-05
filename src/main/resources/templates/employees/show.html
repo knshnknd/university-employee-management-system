@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Сотрудник</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h3 th:text="${employee.getFullName()}"></h3>
+    <h4>Сотрудник университета</h4>
+
+    <hr/>
+
+    <p th:text="'Почта: ' + ${employee.getEmail()}"></p>
+    <p th:text="'Подразделение: ' + ${department.getName()}"></p>
+    <p th:text="'Должность: ' + ${employee.getRank()}"></p>
+    <p th:text="'Количество часов на должность: ' + ${employee.getHours()}"></p>
+
+    <!--Повышения квалификации-->
+    <div th:if="${trainings.isEmpty()}">
+        <p>Повышений квалификации нет.</p>
+    </div>
+    <div th:if="${!trainings.isEmpty()}">
+        <b>Повышения квалификации:</b><br/>
+        <table th:each="training : ${trainings}">
+            <tr th:text="${training.getTitle() + ', ' + training.getHours() + ' ч.'}"></tr>
+        </table>
+    </div>
+
+    <form action="/trainings/new">
+        <input type="submit" value="Добавить повышение квалификации">
+    </form>
+
+    <hr/>
+
+    <table>
+        <tr>
+            <th>
+                <form th:method="GET" th:action="@{/employees/{id}/edit(id=${employee.getId()})}">
+                    <input type="submit" value="Редактировать сотрудника">
+                </form>
+            </th>
+            <th>
+                <form th:method="DELETE" th:action="@{/employees/{id}(id=${employee.getId()})}">
+                    <input type="submit" value="Удалить сотрудника">
+                </form>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

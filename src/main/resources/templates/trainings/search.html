@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>Поиск по повышениям квалификации</title>
+</head>
+<body>
+
+    <div class="header">
+        <a class="header" href="/departments">Подразделения</a> \
+        <a class="header" href="/employees">Сотрудники</a> \
+        <a class="header" href="/trainings">Повышения квалификации</a> \
+        <a class="header" href="/articles">Научные статьи</a>
+        <hr/>
+    </div>
+
+    <h4>Поиск по повышениям квалификаии</h4>
+
+    <form th:method="POST" th:action="@{/trainings/search}">
+        <label for="query">Введите поисковой запрос</label>
+        <input type="text" id="query" name="query"/>
+        <br/>
+        <input type="submit" value="Поиск"/>
+    </form>
+
+    <div th:if="${trainings}">
+        <div th:if="${trainings.isEmpty()}">
+            <span>Повышения квалификации не найдены.</span>
+        </div>
+        <div th:each="training : ${trainings}">
+            <p th:text="${training.getTitle() + ', ' + training.getOwner().getFullName()}"></p>
+        </div>
+    </div>
+</body>
+</html>
