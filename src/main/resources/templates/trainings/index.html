@@ -11,12 +11,11 @@
     <div class="header">
         <a class="header" href="/departments">Подразделения</a> \
         <a class="header" href="/employees">Сотрудники</a> \
-        <a class="header" href="/trainings">Повышения квалификации</a> \
-        <a class="header" href="/articles">Научные статьи</a>
+        <a class="header" href="/trainings">Повышения квалификации</a>
         <hr/>
     </div>
 
-    <h3>Повышение квалификации</h3>
+    <h3>Повышения квалификации</h3>
 
     <div th:each="training : ${trainings}">
         <a th:href="@{/trainings/{id}(id=${training.getId()})}"
@@ -24,5 +23,19 @@
     </div>
     <br/>
     <hr/>
-    <a href="/trainings/new">Добавить ПК</a>
+
+    <table>
+        <tr>
+            <th>
+                <form action="/trainings/new">
+                    <input type="submit" value="Добавить повышение квалификации">
+                </form>
+            </th>
+            <th>
+                <form action="/trainings/search">
+                    <input type="submit" value="Поиск по ПК">
+                </form>
+            </th>
+        </tr>
+    </table>
 </html>

@@ -11,12 +11,11 @@
     <div class="header">
         <a class="header" href="/departments">Подразделения</a> \
         <a class="header" href="/employees">Сотрудники</a> \
-        <a class="header" href="/trainings">Повышения квалификации</a> \
-        <a class="header" href="/articles">Научные статьи</a>
+        <a class="header" href="/trainings">Повышения квалификации</a>
         <hr/>
     </div>
     <h3 th:text="${training.getTitle()}">training</h3>
-    <h4>Повышение квалификации/h4>
+    <h4>Повышение квалификации</h4>
 
     <p th:text="${'Сотрудник, прошедший повышение квалификации: ' + training.getOwner().getFullName()}"/>
     <p th:text="${'Номер удостоверения: ' + training.getCertificateNumber()}"/>

@@ -11,8 +11,7 @@
     <div class="header">
         <a class="header" href="/departments">Подразделения</a> \
         <a class="header" href="/employees">Сотрудники</a> \
-        <a class="header" href="/trainings">Повышения квалификации</a> \
-        <a class="header" href="/articles">Научные статьи</a>
+        <a class="header" href="/trainings">Повышения квалификации</a>
         <hr/>
     </div>
 
@@ -26,14 +25,17 @@
     <p th:text="'Должность: ' + ${employee.getRank()}"></p>
     <p th:text="'Количество часов на должность: ' + ${employee.getHours()}"></p>
 
+    <hr/>
+
     <!--Повышения квалификации-->
     <div th:if="${trainings.isEmpty()}">
         <p>Повышений квалификации нет.</p>
     </div>
     <div th:if="${!trainings.isEmpty()}">
-        <b>Повышения квалификации:</b><br/>
+        <p>Повышения квалификации:</p>
         <table th:each="training : ${trainings}">
-            <tr th:text="${training.getTitle() + ', ' + training.getHours() + ' ч.'}"></tr>
+            <tr> <a class="list" th:href="@{/trainings/{id}(id=${training.getId()})}"
+                    th:text="${training.getTitle() + ', ' + training.getHours() + ' ч.'}"></a></tr>
         </table>
     </div>
 
