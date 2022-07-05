@@ -24,6 +24,7 @@ REST-API employee management system for universities based on Spring (MVC, Data 
 - POST /trainings/search - поиск
 
 Скриншоты программы:
+
 ![image](https://user-images.githubusercontent.com/99965044/177241546-df948520-fbde-4b98-ac38-77abee4b6edb.png)
 ![image](https://user-images.githubusercontent.com/99965044/177241568-dd09026d-bd6f-4142-be8f-47650c9b09a1.png)
 ![image](https://user-images.githubusercontent.com/99965044/177241734-809fe929-6d43-40bb-a724-8bfcac284315.png)
